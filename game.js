@@ -87,8 +87,7 @@ class Level {
 		}	
 		for (let y = top; y < bottom; y++) {
 			for (let x = left; x < right; x++) {
-				// const
-				let cell = this.grid[y][x];
+				const cell = this.grid[y][x];
 				if (cell) {
 					return cell;	
 				}
@@ -113,9 +112,7 @@ class Level {
 			this.removeActor(actor);
 		}
 		if (this.noMoreActors('coin')) {
-			this.status = 'won';
-			// лишняя строчка
-			return;		
+			this.status = 'won';	
 		}
 	}
 }
@@ -204,8 +201,7 @@ class FireRain extends Fireball {
 }
 class Coin extends Actor {
 	constructor(position = new Vector(0,0)) {
-		// лучше не опускать аргументы у конструктора Vector
-		super(position.plus(new Vector(0.2, 0.1)), new Vector(0.6, 0.6), new Vector());
+		super(position.plus(new Vector(0.2, 0.1)), new Vector(0.6, 0.6), new Vector(0,0));
 		this.initial = this.pos;
 		this.springSpeed = 8;
 		this.springDist = 0.07;
