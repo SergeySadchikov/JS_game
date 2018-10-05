@@ -60,7 +60,7 @@ class Level {
 		this.status = null;
 		this.finishDelay = 1;
 		this.height = this.grid.length;
-		this.width = this.grid.reduce((accum, element) => {return accum > element.length ? accum : element.length}, 0);
+		this.width = this.grid.reduce((accum, element) => (accum > element.length ? accum : element.length), 0);
 	}
 	isFinished() {
 		return this.status !== null && this.finishDelay < 0;
@@ -69,7 +69,7 @@ class Level {
 		if (!(currentActor instanceof Actor)) {
 			throw new Error('Неверный аргумент');
 		} 
-		return this.actors.find(actor => (actor.isIntersect(currentActor)));	
+		return this.actors.find(actor => actor.isIntersect(currentActor));	
 	}
 	obstacleAt(position, size) {
 		if (!(position instanceof Vector) || !(size instanceof Vector)) {
@@ -172,7 +172,7 @@ class Fireball extends Actor {
 		this.speed = this.speed.times(-1);
 	}
 	act(time, level) {
-		let nextPosition = this.getNextPosition(time);
+		const nextPosition = this.getNextPosition(time);
 		if (level.obstacleAt(nextPosition, this.size)) {
 			this.handleObstacle();
 		} else {
