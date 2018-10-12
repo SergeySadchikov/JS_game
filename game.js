@@ -104,7 +104,10 @@ class Level {
 		return !this.actors.some(actor => actor.type === type);
 	}
 	playerTouched(type, actor) {
-		if (this.status === null && (type === 'lava' || type === 'fireball'))  {
+		if (this.status !== null) {
+			return;
+		}
+		if (type === 'lava' || type === 'fireball')  {
 			this.status = 'lost';
 			return;
 		} 
